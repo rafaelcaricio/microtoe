@@ -1,6 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+#define PLAYER_X 1;
+#define PLAYER_O 0;
+#define EMPTY -1;
+
+#define NOT_FINISHED 1
+#define X_IS_THE_WINNER 2
+#define O_IS_THE_WINNER 4
+#define GAME_OVER 8
+
 typedef struct Player {
     char *name;
     unsigned int total_points;
@@ -11,9 +20,6 @@ typedef struct Game {
     int round;
 } TicTacToe;
 
-#define X 1;
-#define O 0;
-#define EMPTY -1;
 
 TicTacToe* tictactoe_init() {
     TicTacToe *self;
@@ -44,4 +50,8 @@ int tictactoe_play(TicTacToe *self, int x, int y) {
     self->round++;
     self->table[x][y] = tictactoe_get_current_player(self);
     return 0;
+}
+
+int tictactoe_game_status(TicTacToe *self) {
+    return NOT_FINISHED;
 }
